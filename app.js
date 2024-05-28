@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy, StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import HeaderComponent from './src/components/common/HeaderComponent';
 import BodyContentComponent from './src/components/common/BodyComponent';
 import FooterComponent from './src/components/common/FooterComponent';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import AboutComponent from './src/components/common/AboutComponent';
 import RestaurantMenu from './src/components/restaurant/restaurants/RestaurantMenu';
 import UserClass from './src/class-components/UserClass';
-
+import { Provider } from 'react-redux';
+import appStore from './src/utils/appStore';
+const AboutComponent = lazy(() => import('./src/components/common/AboutComponent'))
 const CrossOriginTestComponent = () => {
 
     const swiggy_public_image_url = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/2b4f62d606d1b2bfba9ba9e5386fabb7";
@@ -15,18 +16,23 @@ const CrossOriginTestComponent = () => {
     return (
         <>
             {/* <img src={swiggy_public_image_url} /> */}
-            <script crossOrigin='' src={script_url}/>
+            <script crossOrigin='' src={script_url} />
         </>
     )
 }
 const AppLayout = () => {
     return (
-        <div id='main'>
-            <HeaderComponent />
-            <UserClass name="kasee" location="dallas"/>
-            <Outlet />
-            <FooterComponent />
-        </div>
+        <StrictMode>
+
+            <Provider store={appStore}>
+                <div id='main'>
+                    <HeaderComponent />
+                    <Outlet />
+                    <FooterComponent />
+                </div>
+            </Provider>
+        </StrictMode>
+
     )
 }
 
@@ -42,7 +48,9 @@ const router = createBrowserRouter(
                 },
                 {
                     path: '/about',
-                    element: <AboutComponent />
+                    element: < Suspense >
+                        <AboutComponent />
+                    </Suspense >
                 },
                 {
                     path: 'restaurants/:restaurantId',

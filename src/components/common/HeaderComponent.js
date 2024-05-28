@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../../utils/constants";
-
+import {useSelector} from 'react-redux'
 const HeaderComponent = () => {
+
+    const cartItems = useSelector((store)=> store.cart.items);
     return (
         <header className='header'>
             <div className='logo-container'>
@@ -16,7 +18,7 @@ const HeaderComponent = () => {
                         <Link to="/about" >About US</Link>
                     </li>
                     <li>Contact US</li>
-                    <li>Login</li>
+                    <li>Cart ({cartItems.length} items)</li>
                 </ul>
             </nav>
         </header>

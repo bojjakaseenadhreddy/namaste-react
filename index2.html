@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Animation</title>
+<style>
+  #runner {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background-color: blue; /* Assuming a simple blue square for the runner */
+    border-radius: 50%;
+    transform-origin: bottom center;
+  }
+</style>
+</head>
+<body>
+
+<div id="runner"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+  // Define the path along which the runner will run
+  const path = [
+    { x: 0, y: 200 }, // Start position
+    { x: 400, y: 200 }, // End position
+  ];
+
+  // Get the DOM element of the runner
+  const runner = document.getElementById('runner');
+
+  // Set the initial position of the runner
+  runner.style.left = path[0].x + 'px';
+  runner.style.top = path[0].y + 'px';
+
+  // Animate the runner along the path
+  anime({
+    targets: '#runner',
+    translateX: path.map(point => point.x),
+    translateY: path.map(point => point.y),
+    duration: 2000, // Duration of the animation in milliseconds
+    easing: 'linear',
+    loop: true // Loop the animation
+  });
+</script>
+</body>
+</html>
