@@ -11,10 +11,6 @@ const RestaurantMenu = () => {
     }, [])
 
     const fetchRestaurantData = async () => {
-        // const URL = '';
-        // const data = await fetch(URL);
-        // const res = await data?.json()
-
         const res =
         {
             name: "Bangalore dabha",

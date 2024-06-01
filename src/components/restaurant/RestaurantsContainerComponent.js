@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { DATA_OBJ } from "../../utils/constants";
 import Shimmer from "../common/Shimmer";
 import RestaurantListComponent from "./RestaurantListComponent";
 const RestaurantsContainerComponent = () => {
@@ -18,12 +17,6 @@ const RestaurantsContainerComponent = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-
-  // { name: "test"}
-  // undefined = don't have a value assigned
-//   FIX ERROR : can't read properties of undefined (reading 'length')
-// restaurants = []
-restaurants.map((r) => console.log(r.info.avgRating)); // 
 
   if (restaurants.length === 0) {
     return <Shimmer />;

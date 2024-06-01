@@ -4,7 +4,6 @@ const RestaurantListItemComponent = ({ restaurant }) => {
     restaurant.info.cloudinaryImageId;
   return (
     <div className="restaurant-list-item">
-      {/* // TODO: Error not defined */}
       <img className="restaurant-list-item-banner" src={IMG_URL} />
       <div className="restaurant-list-item-content">
         <p className="restaurant-name">{restaurant.info.name}</p>
