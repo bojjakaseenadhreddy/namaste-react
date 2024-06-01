@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "../common/Shimmer";
 import RestaurantListComponent from "./RestaurantListComponent";
 const RestaurantsContainerComponent = () => {
-  const [restaurants, setRestaurants] = useState();
+  const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     fetchData();
